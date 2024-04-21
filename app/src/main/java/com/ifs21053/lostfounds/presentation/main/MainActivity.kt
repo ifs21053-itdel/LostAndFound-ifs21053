@@ -24,6 +24,7 @@ import com.ifs21053.lostfounds.helper.Utils.Companion.observeOnce
 import com.ifs21053.lostfounds.presentation.ViewModelFactory
 import com.ifs21053.lostfounds.presentation.login.LoginActivity
 import com.ifs21053.lostfounds.presentation.lostfound.LostFoundDetailActivity
+import com.ifs21053.lostfounds.presentation.lostfound.LostFoundFavoriteActivity
 import com.ifs21053.lostfounds.presentation.lostfound.LostFoundManageActivity
 import com.ifs21053.lostfounds.presentation.profile.ProfileActivity
 
@@ -96,6 +97,11 @@ class MainActivity : AppCompatActivity() {
 
                 R.id.mainMenuAllLostFound -> {
                     observeGetAll()
+                    true
+                }
+
+                R.id.mainMenuFavoriteTodos -> {
+                    openFavoriteLostFoundActivity()
                     true
                 }
                 else -> false
@@ -308,6 +314,14 @@ class MainActivity : AppCompatActivity() {
             LostFoundManageActivity::class.java
         )
         intent.putExtra(LostFoundManageActivity.KEY_IS_ADD, true)
+        launcher.launch(intent)
+    }
+
+    private fun openFavoriteLostFoundActivity() {
+        val intent = Intent(
+            this@MainActivity,
+            LostFoundFavoriteActivity::class.java
+        )
         launcher.launch(intent)
     }
 }

@@ -21,5 +21,10 @@
             android:id="@+id/mainMenuMineLostFound"
             android:title="My Lost and Found"
             app:showAsAction="never" />
+
+        <item
+            android:id="@+id/mainMenuFavoriteTodos"
+            android:title="Favorite Todos"
+            app:showAsAction="never" />
     </group>
 </menu>
