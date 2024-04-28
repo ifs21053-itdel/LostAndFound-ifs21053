@@ -46,16 +46,17 @@
                 android:orientation="vertical">
 
                 <ImageView
-                    android:id="@+id/imageView2"
+                    android:id="@+id/ivLostFoundDetailCover"
                     android:layout_width="match_parent"
                     android:layout_height="130dp"
-                    app:srcCompat="@drawable/icon_gambar"
+                    app:srcCompat="@drawable/ic_image_24"
                     android:paddingTop="12dp"/>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:paddingBottom="12dp">
+
 
                     <CheckBox
                         android:id="@+id/cbLostFoundDetailIsFinished"

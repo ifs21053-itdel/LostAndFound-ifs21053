@@ -13,6 +13,7 @@ import com.ifs21053.lostfounds.data.remote.MyResult
 import com.ifs21053.lostfounds.data.repository.LocalLostFoundRepository
 import com.ifs21053.lostfounds.data.repository.LostFoundRepository
 import com.ifs21053.lostfounds.presentation.ViewModelFactory
+import okhttp3.MultipartBody
 
 class LostFoundViewModel (
     private val lostFoundRepository : LostFoundRepository,
@@ -67,6 +68,16 @@ class LostFoundViewModel (
     fun deleteLocalTodo(todo: DelcomLostFoundEntity) {
         LocalLostFoundRepository.delete(todo)
     }
+
+//    fungsi menambahkan cover yang berinteraksi pada repository dan memperbaharui UI nya
+    fun addCoverLostFound(
+        todoId: Int,
+        cover: MultipartBody.Part,
+    ): LiveData<MyResult<DelcomResponse>> {
+        return lostFoundRepository.addCoverLostFound(todoId, cover).asLiveData()
+    }
+
+
 
     companion object {
         @Volatile

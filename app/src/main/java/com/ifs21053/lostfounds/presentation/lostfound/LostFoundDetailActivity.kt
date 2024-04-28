@@ -12,6 +12,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import com.bumptech.glide.Glide
 import com.ifs18005.delcomtodo.data.remote.response.LostFoundResponse
 import com.ifs21053.lostfounds.R
 import com.ifs21053.lostfounds.data.local.entity.DelcomLostFoundEntity
@@ -103,6 +104,8 @@ class LostFoundDetailActivity : AppCompatActivity() {
                 tvLostFoundDetailDate.text = "Diposting pada: ${todo.createdAt}"
                 tvLostFoundDetailDesc.text = todo.description
 
+
+
                 viewModel.getLocalLostFound(todo.id).observeOnce {
                     if(it != null){
                         delcomLostFound = it
@@ -111,7 +114,16 @@ class LostFoundDetailActivity : AppCompatActivity() {
                         setFavorite(false)
                     }
                 }
-
+//                Menampilkan gambar cover
+                if(todo.cover != null){
+                    ivLostFoundDetailCover.visibility = View.VISIBLE
+                    Glide.with(this@LostFoundDetailActivity)
+                        .load(todo.cover)
+                        .placeholder(R.drawable.ic_image_24)
+                        .into(ivLostFoundDetailCover)
+                }else{
+                    ivLostFoundDetailCover.visibility = View.GONE
+                }
                 cbLostFoundDetailIsFinished.isChecked = todo.isCompleted == 1
 
                 val statusText = if (todo.status.equals("found", ignoreCase = true)) {

@@ -43,6 +43,10 @@ class ProfileActivity : AppCompatActivity() {
             ivProfileBack.setOnClickListener {
                 finish()
             }
+            btnEditProfile.setOnClickListener {
+                // Memulai ProfileManageActivity
+                startActivity(Intent(this@ProfileActivity, ProfileManageActivity::class.java))
+            }
         }
     }
 
@@ -81,11 +85,16 @@ class ProfileActivity : AppCompatActivity() {
         binding.apply {
 
             if(profile.user.photo != null){
-                val urlImg = "https://public-api.delcom.org/${profile.user.photo}"
+                ivProfile.visibility = View.VISIBLE
+
+//                val urlImg = "https://public-api.delcom.org/${profile.user.photo}"
+
                 Glide.with(this@ProfileActivity)
-                    .load(urlImg)
+                    .load("https://public-api.delcom.org/" + profile.user.photo)
                     .placeholder(R.drawable.ic_person)
                     .into(ivProfile)
+            }else{
+                ivProfile.visibility = View.GONE
             }
 
             tvProfileName.text = profile.user.name
