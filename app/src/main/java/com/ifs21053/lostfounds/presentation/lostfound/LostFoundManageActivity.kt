@@ -86,6 +86,15 @@ class LostFoundManageActivity : AppCompatActivity() {
 
                 observePostLostFound(title, description, status)
             }
+
+        //    saat button ditekan, maka akan memanggil method start camera dan gallery
+            btnLostFoundManageCamera.setOnClickListener {
+                startCamera()
+            }
+
+            btnLostFoundManageGallery.setOnClickListener {
+                startGallery()
+            }
         }
     }
 
@@ -97,13 +106,15 @@ class LostFoundManageActivity : AppCompatActivity() {
                 }
 
                 is MyResult.Success -> {
-                    showLoading(false)
-
-                    val resultIntent = Intent()
-                    setResult(RESULT_CODE, resultIntent)
-                    finishAfterTransition()
+                    if (currentImageUri != null) {
+                        observeAddCoverLostFound(result.data.todoId)
+                    } else {
+                        showLoading(false)
+                        val resultIntent = Intent()
+                        setResult(RESULT_CODE, resultIntent)
+                        finishAfterTransition()
+                    }
                 }
-
                 is MyResult.Error -> {
                     AlertDialog.Builder(this@LostFoundManageActivity).apply {
                         setTitle("Oh No!")
